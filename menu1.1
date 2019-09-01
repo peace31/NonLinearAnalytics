@@ -1,0 +1,534 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Nov 15 10:08:12 2018
+
+@author: dominiquekatthain
+
+"""
+Manual: 
+    1. The user must choose which type of numerical problem they would like to solve
+    2. Then, the user must choose which specific method they would like to solve their equation
+    3. The user must follow the specific instructions for each method in order to solve their equations
+    4. Writing equations in python
+        When asked to re write an equation use the following language
+        Addition [+]
+        Subtraction [-]
+        Multiplication [*]
+        Division [/]
+        Exponential [**]
+        Sin [np.sin]
+        Cos [np.cos]
+        Pi [np.pi]
+        Log [np.log]
+    
+    Bisection: 
+        The user must first re-write the equation under function f(x) as the function they would like to solve
+        When writing the equation look at the python writing section in order to assure that it is written in the correct format.
+        Then, the user must run the program. The program will ask the user to imput the smaller value as "a", 
+        then the larger value as "b" 
+        Then it will ask for the maximum number of allowed iterations and the tolerance of error. 
+        It will print the results. 
+        
+    False Position:  
+    Secant:    
+    Newton Rhapson:   
+    Gaussian Elimination:
+    LU Decomposition: 
+    
+        
+    Gauss Seidal:
+        When the program is ran, the user will be asked for a tolerance. This tolerance should be greater than zero and smaller
+        than one. Once the tolerance is entered, the solution of the matrix given will be yielded. To enter a desired matrix to
+        be solved, change the values in the commands A = np.array() and b = np.array(). The values should be entered inside 
+        brackets "[]" and devided by commas. 
+           
+        Example: 
+                    A = np.array([[a,b,c],[d,e,f],[g,h,i]]) 
+                    b = np.array([[j],[k],[l]])
+                    
+        The matrices must be quadratic, as the Gauss Seidel Method and this program can only solve quadratic matrices. This means
+        "A" must have "nxn" dimension, (ie: 1x1, 2x2, 3x3, 4x4, 5x5, etc. ) and "b" must have the same number of values as "n". 
+        An example is already place in the code with "A" having a 3x3 matrix and "b" having three values respectively. 
+    
+    
+    La Grange: 
+        
+    Newton Divided Difference:
+        The user must first re-write the equation in the f(x) section as the equation they would like to solve
+        Then the user must run the program. It will ask for "a", "b", "n", "p", all being points which will be 
+        used for the divided difference. 
+        The result will be the final equation that was created by the divided difference 
+        
+    Power Series: 
+    Linear Regression:
+    Polynomial Regression:
+    Exponential Regression:
+    Logarithmic Regression:
+    Trapezoidal Integration: 
+    Simpson 1/3 Integration: 
+    Simplson 3/8 Integration: 
+    optional
+    Euler: 
+    Modified Euler: 
+    Runje Kutha 4Th order: 
+    
+"""
+We also need programs for:
+
+
+Linear regression
+Polynomial regression
+Logarithmic regression
+Exponential regression in which the user inputs the equation.
+
+We also need a linear integrations part with programs for:
+
+
+Trapezoidal integration
+Simpsons 1/3 integration
+Simpsons 3/8 integration.
+
+And finally the last section is numerical differentiation with:
+
+
+Eulers method
+Modified eulers method
+Runje Kutha 4th order
+def menu_loop(data):
+    """ Show the options to the user """
+    ans = 'a'
+    search_data = []
+    while ans != 'q':
+        print("\nUser Menu:")
+        print("\ta. Non linear Equations")
+        print("\tb. System of Equations")
+        print("\tc. Interpolation")
+        print("\td. Regression")
+        print("\te. Numerical Integration")
+        print("\tf. Bonus")
+        print("\tq. Quit Program")
+        ans = input("Choose an option: ")
+        
+        if ans == 'a':
+            print()
+            search_data
+            print("\nUser Non linear equations:")
+            print("\ta. Bisection")
+            print("\tb. False Position")
+            print("\tc. Secant")
+            print("\td. Newton Rhapson")
+            print("\tq. Quit Program")
+            ans = input("Choose an option: ")
+            if ans == 'a':
+                biseccion(a, b, maxiter, tol)
+            elif ans == 'b':
+                MISSING
+            elif ans == 'c':
+                secant(f, x0, x1, eps,maxiter)
+            elif ans == 'd':
+                Newton_Raphson(f, dfdx, x, eps)
+            elif ans == 'q':
+                print("Thanks for using Non linear equations")
+            else:
+                print("Incorrect option! Try again.")
+            
+        elif ans == 'b':
+            print()
+            search_data
+            print("\nUser System of Equations:")
+            print("\ta. Gaussian Elimination")
+            print("\tb. Gauss Seidel")
+            print("\tc. LU decomposition")
+            print("\tq. Quit Program")
+            ans = input("Choose an option: ")
+            if ans == 'a':
+                gaussian_elimination(A)
+            elif ans == 'b':
+                Gauss_Seidel(A, b, tol)
+            elif ans == 'c':
+                lu(Origin_matrix,eps)
+            elif ans == 'd':
+                search_data = search_name(data)
+            elif ans == 'q':
+                print("Thanks for using system of equations")
+            else:
+                print("Incorrect option! Try again.")
+                
+        elif ans == 'c':
+            print()
+            search_data
+            print("\nUser Interpolation:")
+            print("\ta. La Grange")
+            print("\tb. Newton Divided Differnce")
+            print("\tc. Power series")
+            print("\tq. Quit Program")
+            ans = input("Choose an option: ")
+            if ans == 'a':
+                LagrangeInterp(xn,yn)
+            elif ans == 'b':
+                NDD(xn,yn, xnn)
+            elif ans == 'c':
+                poly_interpolate(xn, yn)
+            elif ans == 'd':
+                search_data = search_name(data)
+            elif ans == 'q':
+                print("Thanks for using interpolation")
+            else:
+                print("Incorrect option! Try again.")
+                
+        elif ans == 'd':
+            print()
+            search_data
+            print("\nUser Regression:")
+            print("\ta. Linear")
+            print("\tb. Polynomial")
+            print("\tc. Exponential") 
+            print("\td. Logarithmic")
+            print("\tq. Quit Program")
+            ans = input("Choose an option: ")
+            if ans == 'a':
+
+            elif ans == 'b':
+
+            elif ans == 'c':
+
+            elif ans == 'd':
+
+            elif ans == 'q':
+                print("Thanks for using regressions")
+            else:
+                print("Incorrect option! Try again.")
+                
+        elif ans == 'e':
+            print()
+            search_data
+            print("\nUser Numerical Integration:")
+            print("\ta. Trapazoidal")
+            print("\tb. Simpson 1/3")
+            print("\tc. Simpson 3/8")
+            print("\tq. Quit Program")
+            ans = input("Choose an option: ")
+            if ans == 'a':
+                
+            elif ans == 'b':
+                
+            elif ans == 'c':
+               
+            elif ans == 'q':
+                print("Thanks for using Numerical Integration")
+            else:
+                print("Incorrect option! Try again.")
+            
+        elif ans == 'f':
+            print()
+            search_data
+            print("\nUser Bonus:")
+            print("\ta. Euler")
+            print("\tb. Modified Euler")
+            print("\tc. Runje Kutha 4th order")
+            print("\tq. Quit Program")
+            ans = input("Choose an option: ")
+            if ans == 'a':
+                
+            elif ans == 'b':
+                
+            elif ans == 'c':
+               
+            elif ans == 'q':
+                print("Thanks for using the bonus section")
+            else:
+                print("Incorrect option! Try again.")
+        elif ans == 'q':
+            print("Thanks for using the system. Good bye!")
+        else:
+            print("Incorrect option! Try again.")
+           
+     
+"""GAUSS SEIDAL"""
+import numpy as np
+def Gauss_Seidel(A, b, tol):
+    n = len(A)
+    U = np.triu(A, 1)
+    L = np.tril(A)
+    out = np.ones((n, 1))
+    error = np.ones((n, 1)) * 100
+    while np.max(error) > tol:
+        x_val = np.dot(np.linalg.inv(L), (b - np.dot(U, out)))
+        error = abs((x_val - out) / x_val) * 100
+        out = x_val
+    output=[]
+    for i in range(len(out)):
+        output.append(out[i][0])
+    return output
+A = np.array([[10,2,-1],[-3,-6,2],[1,2,5]])
+b = np.array([[27],[-61.5],[-21.5]])
+tol = float(input ("input the tolerance:"))
+out=Gauss_Seidel(A, b, tol)
+print("Result: ", out)
+
+
+"""GAUSSIAN ELIMINATION"""
+def gaussian_elimination(A):
+    n = len(A)
+    for i in range(n):
+        A=calculation(A, n, i)
+        for j in range(i + 1, n):
+            A[j] = [A[j][k] - A[i][k] * A[j][i] / A[i][i] for k in range(n + 1)]
+
+    if A[n - 1][n - 1] == 0:
+        return None
+    # backward substitution
+    x = [0] * n
+    for i in range(n - 1, -1, -1):
+        s = sum(A[i][j] * x[j] for j in range(i, n))
+        x[i] = (A[i][n] - s) / A[i][i]
+    return x
+def calculation(B, n, i):
+    eps = -1e10
+    row=0
+    for r in range(i, n):
+        if eps < abs(B[r][i]):
+            row = r
+            eps = abs(B[r][i])
+    B[i], B[row] = B[row], B[i]
+    return B
+A = [[0,-2,6,-10], [-1,3,-6,5], [4,-12,8,12]]
+print("Result: ",gaussian_elimination(A))
+
+
+"""LA GRANGE INTERPOLATING POLY"""
+import numpy as np
+def LagrangeInterp(xn,yn):
+    n = len(xn)
+    out = [0.0] * (n)
+    def B_vector(k, xi):
+        """Calculate b_j(x_xi)"""
+        val = 1.0
+        for i in range(n):
+            if i != k:
+                val *= (xi - xn[i]) / (xn[k] - xn[i])
+        return val
+    for i, xi in enumerate(xn):
+        # Construct each element of L(x)
+        for k in range(n):
+            out[i] += yn[k] * B_vector(k, xi)
+    return out
+def f(x):
+    return np.cos(np.sin(np.pi*x))
+a = float(input("Input a value:"))
+b = float(input("Input b value:"))
+n = int(input("Input n value:"))
+xn = np.linspace(a, b, n)
+yn = f(xn)
+Yn = LagrangeInterp(xn,yn)
+print("Real Result: ", yn)
+print("Interpolation Result: ", Yn)
+
+
+"""LU DECOMPOSITION"""
+import numpy
+from scipy import *
+def lu(Origin_matrix,eps):
+    m=len(Origin_matrix)
+    n=len(Origin_matrix[0])
+    for i in range(0,n):
+        p = Origin_matrix[i,i]
+        if abs(p) >= eps:
+            for k in range(i+1,n):
+                Origin_matrix[k,i] = Origin_matrix[k,i]/p
+                Origin_matrix[k,i+1:n] = Origin_matrix[k,i+1:n] - Origin_matrix[k,i]*Origin_matrix[i,i+1:n]
+    L = eye(n)+tril(Origin_matrix,-1)
+    U = triu(Origin_matrix)
+    return L,U
+A = numpy.array([[2,-1,0,0],[-1,2,-1,0],[0,-1,2,-1],[0,0,-1,2]])
+tol = float(input ("input the tolerance:"))
+L,U = lu(A,tol)
+print("original matrix=",A)
+print ("L=",L)
+print("U=",U)
+
+
+"""NDD"""
+import numpy as np
+import matplotlib.pylab as plt
+def NDD(xn,yn, xnn):
+    n = len(xn)
+    nx = len(xnn)
+    N = [0.0] * (nx)
+    def A_val(n1, n2=None):
+        if n2 is None: n2 = n1; n1 = 0
+        if n1 == n2:
+            return yn[n1]
+        elif n2 - n1 == 1:
+            return (yn[n2] - yn[n1]) / (xn[n2] - xn[n1])
+        else:
+            return (A_val(n1 + 1, n2) - A_val(n1, n2 - 1)) / (xn[n2] - xn[n1])
+    def v_value(nn, xi):
+        v = 1.0
+        for i in range(0, nn):
+            v *= float(xi - xn[i])
+        return v
+    # Construct N(x)
+    for i in range(nx):
+        for j in range(0, n):
+            N[i] += A_val(j) * v_value(j, xnn[i])
+    return N
+def f(x):
+    return np.cos(np.sin(np.pi*x))
+a = float(input("Input a value:"))
+b = float(input("Input b value:"))
+n = int(input("Input n value:"))
+p = int(input("Input p value:"))
+xn = np.linspace(a, b, n)
+yn = f(xn)
+xnn=np.linspace(a, b, p)
+ynn = NDD(xn,yn, xnn)
+plt.plot(xn, yn, 'r')
+plt.plot(xnn,ynn, 'k')
+plt.show()
+
+
+"""SECANT"""
+def f(x):
+    return x**2 - 9
+def secant(f, x0, x1, eps,maxiter):
+    f_value0 = f(x0)
+    f_value1 = f(x1)
+    iter_num= 0
+    x=x0
+    while abs(f_value1) > eps and iter_num < maxiter:
+        try:
+            val = float(f_value1 - f_value0)/(x1 - x0)
+            x = x1 - float(f_value1)/val
+        except ZeroDivisionError:
+            print ("Error!:divided by zero for x = ", x)
+            return x
+        x0 = x1
+        x1 = x
+        f_value0 = f_value1
+        f_value1 = f(x1)
+        iter_num += 1
+    return x
+x0 = float(input("Input an initial value:"))
+x1 = float(input("Input an initial value:"))
+tol = float(input ("input the tolerance:"))
+maxiter = int(input("maximum number of itterations"))
+solution = secant(f, x0, x1, tol,maxiter)
+print("Result: ", solution)
+
+
+""" POLYNOMIAL INTERPOLATION"""
+from numpy import *
+import matplotlib.pyplot as plt
+def poly_interpolate(xn, yn):
+    cc = list()
+    for i in range(min(len(xn), len(yn))):
+        cc.append(yn[i])
+        if i == 0: continue
+        Tr = [xn[i]-xn[j] for j in range(i)]
+        Tr.insert(0, 1)
+        cc[i] /= prod(Tr)
+        cc[i] -= sum([c_[k]*Tr[k] for k in range(i)]/prod(Tr))
+    def poly(t):
+        a = array([t - xn[k] for k in range(min(len(xn), len(yn)))])
+        a = concatenate((ones((1, shape(a)[1])), a), axis=0)
+        z = list()
+        for k in range(a.shape[1]):
+            z.append(array([prod(a[:j, k]) for j in range(1, a.shape[0])]).dot(array(cc)))
+        return z
+    return poly
+a = float(input("Input a value:"))
+b = float(input("Input b value:"))
+n = int(input("Input n value:"))
+xn = [-2, -1, 0, 1, 2]
+yn = [-5, -3, -15, 39, -9]
+interpolated = poly_interpolate(xn, yn)
+t = linspace(a, b, n)
+print("x value:",xn)
+print("y value:",yn)
+print("interpol x value:",t)
+print("interpol y value:",interpolated(t))
+plt.plot(t, interpolated(t))
+plt.scatter(xn, yn)
+plt.show()
+
+
+"""NEWTON RHAPSON"""
+def f(x):
+    return x**2 - 9
+def gradient(x):
+    return 2*x
+def Newton_Raphson(f, dfdx, x, eps):
+    while abs(f(x)) > eps:
+        x = x - float(f(x))/dfdx(x)
+    return x
+x0 = float(input("Input an initial value:"))
+tol = float(input ("input the tolerance:"))
+print("Result: ", Newton_Raphson(f, gradient, x0, tol))
+
+
+"""POWER SERIES"""
+from numpy import *
+import matplotlib.pyplot as plt
+def poly_interpolate(xn, yn):
+    cc = list()
+    for i in range(min(len(xn), len(yn))):
+        cc.append(yn[i])
+        if i == 0: continue
+        Tr = [xn[i]-xn[j] for j in range(i)]
+        Tr.insert(0, 1)
+        cc[i] /= prod(Tr)
+        cc[i] -= sum([c_[k]*Tr[k] for k in range(i)]/prod(Tr))
+    def poly(t):
+        a = array([t - xn[k] for k in range(min(len(xn), len(yn)))])
+        a = concatenate((ones((1, shape(a)[1])), a), axis=0)
+        z = list()
+        for k in range(a.shape[1]):
+            z.append(array([prod(a[:j, k]) for j in range(1, a.shape[0])]).dot(array(cc)))
+        return z
+    return poly
+a = float(input("Input a value:"))
+b = float(input("Input b value:"))
+n = int(input("Input n value:"))
+xn = [-2, -1, 0, 1, 2]
+yn = [-5, -3, -15, 39, -9]
+interpolated = poly_interpolate(xn, yn)
+t = linspace(a, b, n)
+print("x value:",xn)
+print("y value:",yn)
+print("interpol x value:",t)
+print("interpol y value:",interpolated(t))
+plt.plot(t, interpolated(t))
+plt.scatter(xn, yn)
+plt.show()
+
+
+"""BISECTION"""
+# Function to be evaluated
+def f(x):
+    res = 3*x-5
+    return res
+# Function that returns True if a number is positive or False if it is negative
+def sign(x):
+    return False if x < 0 else True
+# Bisection method
+def biseccion(a, b, maxiter, tol):
+    n = 0
+    while n <= maxiter:
+        c = (a+b)/2
+        if (f(c) == 0) or ((b-a)/2 < tol):
+            return c
+        
+        n += 1
+        
+        if sign(f(c)) == sign(f(a)):
+            a = c
+        else: 
+            b = c
+a = float(input("Input a value (must be smaller than b): "))
+b = float(input("Input b value (must be larger than a): "))
+print("Rewrite the code so that f(x) is the desired funciton")
+maxiter = int(input("Maximum number of iterations: "))
+tol = float(input ("Input the tolerance: "))
+print("Result: ", biseccion(a, b, maxiter, tol))
